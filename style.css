@@ -36,7 +36,7 @@ img { max-width: 100%; display: block; } a { color: inherit; text-decoration: no
 .hero__tagline { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 300; font-style: italic; color: var(--text); line-height: 1.55; margin-bottom: 2.5rem; }
 .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero__photo { display: flex; align-items: center; justify-content: center; }
-.hero__photo-img { width: min(380px,100%); aspect-ratio: 3/4; object-fit: cover; object-position: top center; display: block; }
+.hero__photo-img { width: min(380px,100%); display: block; }
 .hero__photo-frame { width: min(380px,100%); aspect-ratio: 3/4; background: var(--dark-3); border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; position: relative; }
 .hero__photo-frame::before { content: ''; position: absolute; inset: 12px; border: 1px solid rgba(184,151,42,0.1); pointer-events: none; }
 .hero__monogram { font-family: var(--font-serif); font-size: 4.5rem; font-weight: 300; color: var(--gold); letter-spacing: 0.1em; opacity: 0.7; }
