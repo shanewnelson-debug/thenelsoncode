@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Nelson Code: How To Series</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0f0d0b;
+    --bg-card: #161310;
+    --bg-surface: #1e1a15;
+    --gold: #c9a84c;
+    --gold-light: #e8c96b;
+    --gold-dim: #8a6e30;
+    --cream: #f0e8d8;
+    --cream-dim: #b8a98a;
+    --text-primary: #ede8df;
+    --text-secondary: #9a8f7e;
+    --text-muted: #5c5248;
+    --border: rgba(201,168,76,0.15);
+    --border-strong: rgba(201,168,76,0.35);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg-deep); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2.5rem; background: rgba(15,13,11,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+  .nav-brand { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-secondary); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--gold); }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 8rem 4rem 6rem 4rem; position: relative; z-index: 2; }
+  .hero-eyebrow { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+  .hero-eyebrow::before { content: ''; display: block; width: 2.5rem; height: 1px; background: var(--gold); }
+  .hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: 1.05; color: var(--cream); margin-bottom: 0.5rem; }
+  .hero-headline em { font-style: italic; color: var(--gold); }
+  .hero-sub { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 400; font-style: italic; color: var(--cream-dim); margin-bottom: 2.5rem; line-height: 1.4; }
+  .hero-body { font-size: 1rem; color: var(--text-secondary); max-width: 46ch; margin-bottom: 3rem; line-height: 1.8; }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--gold); color: var(--bg-deep); font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.2rem; text-decoration: none; font-weight: 500; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-secondary { display: inline-block; border: 1px solid var(--border-strong); color: var(--cream-dim); font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2.2rem; text-decoration: none; transition: border-color 0.2s, color 0.2s; }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right { position: relative; display: flex; align-items: center; justify-content: center; background: var(--bg-surface); border-left: 1px solid var(--border); }
+  .hero-visual { position: relative; width: 340px; }
+  .code-card { background: var(--bg-card); border: 1px solid var(--border-strong); padding: 2.5rem; position: relative; }
+  .code-card-label { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 2rem; }
+  .tenet-line { display: flex; align-items: flex-start; gap: 1.2rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border); }
+  .tenet-line:last-child { border-bottom: none; }
+  .tenet-num { font-family: 'DM Mono', monospace; font-size: 0.6rem; color: var(--gold); padding-top: 0.2rem; flex-shrink: 0; width: 1.5rem; }
+  .tenet-name { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.2rem; }
+  .tenet-desc { font-size: 0.75rem; color: var(--text-secondary); line-height: 1.5; }
+  .motto-band { background: var(--gold); padding: 1.4rem 4rem; display: flex; justify-content: center; align-items: center; gap: 3rem; overflow: hidden; }
+  .motto-phrase { font-family: 'Playfair Display', serif; font-size: 1rem; font-style: italic; color: var(--bg-deep); white-space: nowrap; font-weight: 700; }
+  .motto-dot { width: 4px; height: 4px; background: rgba(15,13,11,0.4); border-radius: 50%; flex-shrink: 0; }
+  section { padding: 7rem 4rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 2.5rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::before { content: ''; display: block; width: 2rem; height: 1px; background: var(--gold); }
+  .section-headline { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 900; line-height: 1.1; color: var(--cream); margin-bottom: 1.5rem; }
+  .section-headline em { font-style: italic; color: var(--gold); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .body-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.85; margin-bottom: 1.5rem; }
+  .pull-quote { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-style: italic; color: var(--cream-dim); border-left: 3px solid var(--gold); padding-left: 1.8rem; margin: 2.5rem 0; line-height: 1.5; }
+  .series-bg { background: var(--bg-surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .series-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .series-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2.2rem; position: relative; transition: border-color 0.25s; cursor: pointer; }
+  .series-card:hover { border-color: var(--gold-dim); }
+  .series-card-num { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 1rem; }
+  .series-card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--cream); margin-bottom: 0.6rem; line-height: 1.25; }
+  .series-card-sub { font-size: 0.8rem; color: var(--gold-dim); font-style: italic; margin-bottom: 1.2rem; font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+  .series-card-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+  .series-card-modules { list-style: none; border-top: 1px solid var(--border); padding-top: 1.2rem; }
+  .series-card-modules li { font-size: 0.78rem; color: var(--text-muted); padding: 0.35rem 0; padding-left: 1rem; position: relative; line-height: 1.4; }
+  .series-card-modules li::before { content: '->'; position: absolute; left: 0; color: var(--gold-dim); font-size: 0.65rem; }
+  .series-tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.7rem; background: rgba(201,168,76,0.1); color: var(--gold-dim); border: 1px solid rgba(201,168,76,0.2); margin-bottom: 1.2rem; }
+  .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--border); margin-top: 3rem; }
+  .step-block { padding: 2.5rem 2rem; border-right: 1px solid var(--border); position: relative; }
+  .step-block:last-child { border-right: none; }
+  .step-num { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 1rem; display: block; }
+  .step-title { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: var(--cream); margin-bottom: 0.6rem; }
+  .step-desc { font-size: 0.83rem; color: var(--text-secondary); line-height: 1.7; }
+  .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .audience-card { border: 1px solid var(--border); padding: 2rem; }
+  .audience-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .audience-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--cream); margin-bottom: 0.6rem; }
+  .audience-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
+  .quote-block { background: var(--bg-surface); border: 1px solid var(--border-strong); padding: 4rem; text-align: center; position: relative; overflow: hidden; }
+  .quote-text { font-family: 'Playfair Display', serif; font-size: clamp(1.3rem, 2.5vw, 2rem); font-style: italic; color: var(--cream); line-height: 1.5; max-width: 700px; margin: 0 auto 1.5rem; position: relative; z-index: 1; }
+  .quote-source { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .pricing-card { background: var(--bg-card); border: 1px solid var(--border); padding: 2.5rem; position: relative; }
+  .pricing-card.featured { border-color: var(--gold); background: rgba(201,168,76,0.04); }
+  .featured-tag { position: absolute; top: -0.6rem; left: 2rem; background: var(--gold); color: var(--bg-deep); font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.8rem; font-weight: 500; }
+  .pricing-tier { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.25em; color: var(--gold-dim); text-transform: uppercase; margin-bottom: 1rem; }
+  .pricing-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--cream); margin-bottom: 0.5rem; }
+  .pricing-price { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 0.3rem; }
+  .pricing-note { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 2rem; }
+  .pricing-list { list-style: none; margin-bottom: 2.5rem; }
+  .pricing-list li { font-size: 0.85rem; color: var(--text-secondary); padding: 0.55rem 0; border-bottom: 1px solid var(--border); display: flex; gap: 0.7rem; align-items: flex-start; }
+  .pricing-list li::before { content: 'v'; color: var(--gold); font-size: 0.75rem; flex-shrink: 0; padding-top: 0.1rem; }
+  .final-cta { background: var(--bg-surface); border-top: 1px solid var(--border); padding: 7rem 4rem; text-align: center; }
+  .final-cta .section-headline { max-width: 700px; margin: 0 auto 1.5rem; }
+  .final-cta .body-text { max-width: 550px; margin: 0 auto 3rem; }
+  .footer { background: var(--bg-deep); border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .two-col, .series-grid, .steps-row, .audience-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .step-block { border-right: none; border-bottom: 1px solid var(--border); }
+    section { padding: 5rem 2rem; }
+    nav { padding: 1rem 1.5rem; }
+    .motto-band { gap: 1.5rem; padding: 1.2rem 2rem; }
+  }
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://thenelsoncode.com" class="nav-brand">Shane Nelson / The Nelson Code</a>
+  <ul class="nav-links">
+    <li><a href="#series">The Series</a></li>
+    <li><a href="#who">Who It's For</a></li>
+    <li><a href="#pricing">Enroll</a></li>
+    <li><a href="https://thenelsoncode.com/#speaking">Speaking</a></li>
+    <li><a href="https://thenelsoncode.com/#books">Books</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">The Nelson Code - Digital Series</div>
+    <h1 class="hero-headline"><em>How To</em><br>Lead the<br>Forgotten Ones.</h1>
+    <p class="hero-sub">Practical wisdom. Real classrooms. No shortcuts.</p>
+    <p class="hero-body">Twenty-seven years. Alternative campuses. Trauma-affected students. Teachers on the edge. This series is what no graduate program tells you - condensed into modules you can use Monday morning.</p>
+    <div class="hero-cta">
+      <a href="#pricing" class="btn-primary">Enroll Now</a>
+      <a href="#series" class="btn-secondary">Browse the Series</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">
+      <div class="code-card">
+        <div class="code-card-label">The Nelson Code / Core Tenets</div>
+        <div class="tenet-line"><span class="tenet-num">01</span><div class="tenet-content"><div class="tenet-name">See Clearly</div><div class="tenet-desc">How you think determines everything that follows.</div></div></div>
+        <div class="tenet-line"><span class="tenet-num">02</span><div class="tenet-content"><div class="tenet-name">Move People</div><div class="tenet-desc">You are shaping someone whether you know it or not.</div></div></div>
+        <div class="tenet-line"><span class="tenet-num">03</span><div class="tenet-content"><div class="tenet-name">Go Hard</div><div class="tenet-desc">Show up. Do the work. Repeat. No shortcuts.</div></div></div>
+        <div class="tenet-line"><span class="tenet-num">04</span><div class="tenet-content"><div class="tenet-name">Stand Firm</div><div class="tenet-desc">Your values aren't a mood. They're a foundation.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="motto-band">
+  <span class="motto-phrase">I have value.</span><span class="motto-dot"></span>
+  <span class="motto-phrase">My life has a purpose.</span><span class="motto-dot"></span>
+  <span class="motto-phrase">I will succeed.</span>
+</div>
+<section>
+  <div class="section-inner">
+    <div class="section-label">What This Is</div>
+    <div class="two-col">
+      <div><h2 class="section-headline">The work they don't teach you in<br><em>graduate school.</em></h2></div>
+      <div>
+        <p class="body-text">Most educator training prepares you for the student who arrives ready. The Nelson Code: How To Series was built for everyone else.</p>
+        <div class="pull-quote">"You cannot afford to appease. You are not there to make deals. You are there to feed them their future."</div>
+        <p class="body-text">Each module is drawn directly from classrooms, hallways, and hard conversations that actually happened. Practical. Proven. Delivered in Shane's direct, conviction-driven voice.</p>
+        <p class="body-text">This is the third pillar of the Nelson Code ecosystem. Where the keynotes ignite rooms - this series hands you the tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="series-bg" id="series">
+  <div class="section-inner">
+    <div class="section-label">The Full Series</div>
+    <h2 class="section-headline">Six courses.<br><em>One philosophy.</em></h2>
+    <div class="series-grid">
+      <div class="series-card"><div class="series-card-num">Course 01 / The Nelson Code</div><div class="series-tag">Foundation</div><div class="series-card-title">How To See Clearly</div><div class="series-card-sub">The Art of Noticing What Others Miss</div><p class="series-card-desc">Every overlooked student has a story visible to anyone willing to look. This course trains your perception.</p><ul class="series-card-modules"><li>Why stigma is the most expensive mistake in education</li><li>Reading the room before the lesson begins</li><li>How your assumptions shape their ceiling</li><li>The forgotten ones: who they are and why they matter</li></ul></div>
+      <div class="series-card"><div class="series-card-num">Course 02 / The Nelson Code</div><div class="series-tag">Culture</div><div class="series-card-title">How To Build Culture That Lasts</div><div class="series-card-sub">Culture Is a Decision, Not an Accident</div><p class="series-card-desc">A school's culture should outlast any single person in it. This course shows you how to build something durable.</p><ul class="series-card-modules"><li>The motto as infrastructure, not decoration</li><li>Small wins as the engine of self-belief</li><li>Why environment is instruction</li><li>Designing spaces that speak dignity</li></ul></div>
+      <div class="series-card"><div class="series-card-num">Course 03 / The Nelson Code</div><div class="series-tag">Classroom Authority</div><div class="series-card-title">How To Hold the Ring</div><div class="series-card-sub">Stop Appeasing. Start Leading.</div><p class="series-card-desc">Appeasement feels like peace. It is surrender. This course confronts the most common failure mode in education.</p><ul class="series-card-modules"><li>PT: what it is, why it spreads, how to end it</li><li>The difference between a deal and a standard</li><li>Managing the 45-minute window with urgency</li><li>When to be firm, when to be flexible, and how to know</li></ul></div>
+      <div class="series-card"><div class="series-card-num">Course 04 / The Nelson Code</div><div class="series-tag">Student Relationships</div><div class="series-card-title">How To Move People</div><div class="series-card-sub">The Moment-by-Moment Art of Influence</div><p class="series-card-desc">Real influence is not loud. It is consistent, honest, and present. This course teaches the Pause. Pivot. Point. framework.</p><ul class="series-card-modules"><li>The Pause: recognizing the reaction you cannot afford</li><li>The Pivot: choosing the harder, better move</li><li>The Point: naming the lesson so it sticks</li><li>Transparency as a tool: what honesty earns</li></ul></div>
+      <div class="series-card"><div class="series-card-num">Course 05 / The Nelson Code</div><div class="series-tag">Leadership</div><div class="series-card-title">How To Lead When the System Fails</div><div class="series-card-sub">Authority Lives Inside You First</div><p class="series-card-desc">Institutions will let you down. This course prepares you to lead decisively even when the structure around you provides no cover.</p><ul class="series-card-modules"><li>Why waiting for permission is a failure of leadership</li><li>Protecting your teachers when no one else will</li><li>Decision-making under pressure and ambiguity</li><li>The principal interview: what they're really asking</li></ul></div>
+      <div class="series-card"><div class="series-card-num">Course 06 / The Nelson Code</div><div class="series-tag">Identity &amp; Calling</div><div class="series-card-title">How To Stand Firm</div><div class="series-card-sub">Conviction as a Leadership Strategy</div><p class="series-card-desc">In a world of constant pressure to soften your position - this course is about staying planted. Not rigid. Rooted.</p><ul class="series-card-modules"><li>Knowing what you will not trade</li><li>Leading from the motto, not the moment</li><li>How your values become visible to students</li><li>Reinvention without abandoning your foundation</li></ul></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-headline">Self-paced.<br><em>No fluff. No filler.</em></h2>
+    <div class="steps-row">
+      <div class="step-block"><span class="step-num">01</span><div class="step-title">Enroll in a Course</div><p class="step-desc">Choose a single course or the full series. Instant access from any device.</p></div>
+      <div class="step-block"><span class="step-num">02</span><div class="step-title">Watch the Modules</div><p class="step-desc">Direct video instruction in Shane's voice. Each module runs 8-18 minutes.</p></div>
+      <div class="step-block"><span class="step-num">03</span><div class="step-title">Apply the Framework</div><p class="step-desc">Each course includes downloadable tools, reflection prompts, and a concrete action step for Monday morning.</p></div>
+      <div class="step-block"><span class="step-num">04</span><div class="step-title">Go Deeper</div><p class="step-desc">Bring Shane to your campus for a keynote. Read The Forgotten Ones. Wear something that says you believe it.</p></div>
+    </div>
+  </div>
+</section>
+<section class="series-bg" id="who">
+  <div class="section-inner">
+    <div class="section-label">Who This Is For</div>
+    <h2 class="section-headline">If you lead people,<br><em>this is for you.</em></h2>
+    <div class="audience-grid">
+      <div class="audience-card"><div class="audience-icon">&#127983;</div><div class="audience-title">Teachers &amp; Educators</div><p class="audience-desc">You are in the room with them every day. This series was built for what happens in that room.</p></div>
+      <div class="audience-card"><div class="audience-icon">&#128273;</div><div class="audience-title">Principals &amp; Administrators</div><p class="audience-desc">You cannot book a keynote every month. This gives you ongoing access to the same frameworks.</p></div>
+      <div class="audience-card"><div class="audience-icon">&#128203;</div><div class="audience-title">Aspiring Leaders</div><p class="audience-desc">If you want to lead a campus someday, start learning how right now.</p></div>
+      <div class="audience-card"><div class="audience-icon">&#128106;</div><div class="audience-title">Parents</div><p class="audience-desc">The Pause. Pivot. Point. framework works in homes, not just hallways.</p></div>
+      <div class="audience-card"><div class="audience-icon">&#127962;</div><div class="audience-title">Team Leaders &amp; Managers</div><p class="audience-desc">If you manage overlooked people - which is most people - the principles translate directly.</p></div>
+      <div class="audience-card"><div class="audience-icon">&#127983;</div><div class="audience-title">Districts &amp; Schools</div><p class="audience-desc">The full series is available for group licensing. Contact us for campus and district pricing.</p></div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="section-inner">
+    <div class="quote-block">
+      <p class="quote-text">"Many people do not fail because they lack potential. They fail because they lose sight of their value, their purpose, or the possibility of success."</p>
+      <div class="quote-source">Shane Nelson - Founding Principal, Putnam Heights Academy / Oklahoma City</div>
+    </div>
+  </div>
+</section>
+<section id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Enroll</div>
+    <h2 class="section-headline">Choose your<br><em>entry point.</em></h2>
+    <div class="pricing-grid">
+      <div class="pricing-card"><div class="pricing-tier">Single Course</div><div class="pricing-title">One Module</div><div class="pricing-price">$47</div><div class="pricing-note">Instant access / lifetime</div><ul class="pricing-list"><li>Any single course of your choice</li><li>All video modules included</li><li>Downloadable tools &amp; frameworks</li><li>Reflection prompts per module</li><li>Certificate of completion</li></ul><a href="https://payhip.com/itsanelson" class="btn-secondary" style="width:100%;text-align:center;display:block;padding:1rem;">Enroll in One</a></div>
+      <div class="pricing-card featured"><div class="featured-tag">Most Chosen</div><div class="pricing-tier">Full Series</div><div class="pricing-title">The Nelson Code</div><div class="pricing-price">$197</div><div class="pricing-note">All 6 courses / lifetime access</div><ul class="pricing-list"><li>All six courses, unlocked immediately</li><li>Complete video library</li><li>All downloadable tools &amp; templates</li><li>The Forgotten Ones: Essential Edition (PDF)</li><li>Certificate of completion</li><li>10% discount in the itsanelson shop</li></ul><a href="https://payhip.com/itsanelson" class="btn-primary" style="width:100%;text-align:center;display:block;padding:1rem;">Enroll in the Series</a></div>
+      <div class="pricing-card"><div class="pricing-tier">Group / Campus</div><div class="pricing-title">District License</div><div class="pricing-price">Custom</div><div class="pricing-note">Starting at 10 seats</div><ul class="pricing-list"><li>Full series access for your team</li><li>Facilitator guide included</li><li>Progress tracking by cohort</li><li>Eligible for PD credit hours</li><li>Priority booking for a keynote</li><li>Dedicated onboarding session</li></ul><a href="mailto:shane@thenelsoncode.com" class="btn-secondary" style="width:100%;text-align:center;display:block;padding:1rem;">Contact for Pricing</a></div>
+    </div>
+  </div>
+</section>
+<div class="final-cta">
+  <div class="section-label" style="justify-content:center;margin-bottom:2rem;"><span>The Ecosystem</span></div>
+  <h2 class="section-headline">The series is one part<br>of something <em>larger.</em></h2>
+  <p class="body-text">The keynotes ignite rooms. The book gives depth. The series gives tools. Every piece points toward the same conviction: the overlooked ones have always had value. They just needed someone to say it - and mean it.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="#pricing" class="btn-primary">Start the Series</a>
+    <a href="https://thenelsoncode.com/#speaking" class="btn-secondary">Book a Keynote</a>
+    <a href="https://thenelsoncode.com/#books" class="btn-secondary">The Book</a>
+  </div>
+</div>
+<footer class="footer">
+  <span class="footer-brand">The Nelson Code / Shane Nelson - 2026</span>
+  <ul class="footer-links">
+    <li><a href="https://thenelsoncode.com">Home</a></li>
+    <li><a href="https://thenelsoncode.com/#speaking">Speaking</a></li>
+    <li><a href="https://thenelsoncode.com/#books">Books</a></li>
+    <li><a href="mailto:shane@thenelsoncode.com">Contact</a></li>
+  </ul>
+</footer>
+</body>
+</html>
