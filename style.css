@@ -111,7 +111,7 @@ img { max-width: 100%; display: block; } a { color: inherit; text-decoration: no
 .contact__details li { display: flex; flex-direction: column; gap: 4px; padding: 18px 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; }
 .contact__details li:first-child { border-top: 1px solid var(--border); }
 .contact__detail-label { font-size: 9.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
-.contact-form { display: flex; flex-direction: column; gap: 20px; }
+.contact-form { display: flex; flex-direction: column; gap: 20px; padding-top: 59px; }
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .form-field { display: flex; flex-direction: column; gap: 8px; }
 .form-field label { font-size: 9.5px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
