@@ -229,3 +229,24 @@ img { max-width: 100%; display: block; } a { color: inherit; text-decoration: no
 @media (max-width: 600px) {
   .courses__grid { grid-template-columns: 1fr; }
 }
+
+
+/* Footer postscript */
+.footer__postscript {
+  border-top: 1px solid rgba(184,151,42,0.1);
+  padding: 1.5rem 40px;
+  text-align: center;
+}
+.footer__postscript a {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-dim);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.footer__postscript a:hover {
+  color: var(--gold);
+}
