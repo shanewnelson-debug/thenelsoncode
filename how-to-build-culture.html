@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How To Build Culture That Lasts — The Nelson Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#0f0d0b;--bg-card:#161310;--bg-surface:#1e1a15;--gold:#c9a84c;--gold-light:#e8c96b;--gold-dim:#8a6e30;--cream:#f0e8d8;--cream-dim:#b8a98a;--text-primary:#ede8df;--text-secondary:#9a8f7e;--text-muted:#5c5248;--border:rgba(201,168,76,0.15);--border-strong:rgba(201,168,76,0.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg-deep);color:var(--text-primary);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.2rem 2.5rem;background:rgba(15,13,11,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-brand{font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.25em;color:var(--gold);text-transform:uppercase;text-decoration:none}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{font-size:0.72rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-secondary);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--gold)}
+.hero{padding:8rem 4rem 5rem;max-width:1100px;margin:0 auto}
+.course-eyebrow{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:1rem}
+.course-eyebrow::before{content:'';display:block;width:2rem;height:1px;background:var(--gold)}
+.course-num{font-family:'DM Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.5rem}
+.course-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;background:rgba(201,168,76,0.1);color:var(--gold-dim);border:1px solid rgba(201,168,76,0.2);margin-bottom:1.5rem}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;line-height:1.05;color:var(--cream);margin-bottom:0.5rem}
+h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.4rem);font-style:italic;color:var(--cream-dim);margin-bottom:2rem}
+.hero-body{font-size:1rem;color:var(--text-secondary);max-width:55ch;line-height:1.85;margin-bottom:3rem}
+.btn-primary{display:inline-block;background:var(--gold);color:var(--bg-deep);font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;font-weight:500;transition:background 0.2s,transform 0.15s}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-secondary{display:inline-block;border:1px solid var(--border-strong);color:var(--cream-dim);font-family:'DM Mono',monospace;font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;padding:1rem 2.5rem;text-decoration:none;transition:border-color 0.2s,color 0.2s;margin-left:1rem}
+.btn-secondary:hover{border-color:var(--gold);color:var(--gold)}
+.divider{height:1px;background:var(--border);margin:5rem 4rem}
+.content{padding:0 4rem 5rem;max-width:1100px;margin:0 auto}
+.section-label{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.3em;color:var(--gold);text-transform:uppercase;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
+.section-label::before{content:'';display:block;width:2rem;height:1px;background:var(--gold)}
+h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:900;color:var(--cream);margin-bottom:1.5rem;line-height:1.15}
+h2 em{font-style:italic;color:var(--gold)}
+.body-text{font-size:1rem;color:var(--text-secondary);line-height:1.85;margin-bottom:1.5rem;max-width:65ch}
+.modules-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+.module-card{background:var(--bg-card);border:1px solid var(--border);padding:2rem}
+.module-num{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.75rem}
+.module-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:var(--cream);margin-bottom:0.5rem}
+.module-desc{font-size:0.85rem;color:var(--text-secondary);line-height:1.7}
+.pull-quote{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;color:var(--cream-dim);border-left:3px solid var(--gold);padding-left:1.8rem;margin:3rem 0;line-height:1.5;max-width:60ch}
+.pricing-block{background:var(--bg-surface);border:1px solid var(--border-strong);padding:3rem;margin:3rem 0;display:flex;justify-content:space-between;align-items:center;gap:2rem;flex-wrap:wrap}
+.pricing-price{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--gold);line-height:1}
+.pricing-note{font-size:0.8rem;color:var(--text-muted);margin-top:0.5rem}
+.pricing-features{list-style:none;margin-top:1.5rem}
+.pricing-features li{font-size:0.85rem;color:var(--text-secondary);padding:0.4rem 0;border-bottom:1px solid var(--border);display:flex;gap:0.6rem}
+.pricing-features li::before{content:'v';color:var(--gold);font-size:0.75rem}
+.series-nav{padding:4rem;background:var(--bg-surface);border-top:1px solid var(--border)}
+.series-nav-inner{max-width:1100px;margin:0 auto}
+.series-nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2rem}
+.series-nav-card{background:var(--bg-card);border:1px solid var(--border);padding:1.5rem;text-decoration:none;transition:border-color 0.2s;display:block}
+.series-nav-card:hover{border-color:var(--gold-dim)}
+.series-nav-card.active{border-color:var(--gold-dim);background:rgba(201,168,76,0.05)}
+.series-nav-num{font-family:'DM Mono',monospace;font-size:0.58rem;letter-spacing:0.2em;color:var(--gold-dim);text-transform:uppercase;margin-bottom:0.5rem;display:block}
+.series-nav-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--cream)}
+footer{background:var(--bg-deep);border-top:1px solid var(--border);padding:2.5rem 4rem;display:flex;justify-content:space-between;align-items:center}
+.footer-brand{font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.2em;color:var(--text-muted);text-transform:uppercase}
+.footer-links{display:flex;gap:2rem;list-style:none}
+.footer-links a{font-family:'DM Mono',monospace;font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+@media(max-width:768px){.hero,.content{padding:7rem 1.5rem 3rem}.modules-grid{grid-template-columns:1fr}.series-nav{padding:3rem 1.5rem}.pricing-block{flex-direction:column}.series-nav-grid{grid-template-columns:1fr 1fr}.footer{padding:2rem 1.5rem;flex-direction:column;gap:1rem;text-align:center}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="https://thenelsoncode.com" class="nav-brand">Shane Nelson / The Nelson Code</a>
+  <ul class="nav-links">
+    <li><a href="/how-to-series">The Series</a></li>
+    <li><a href="/how-to-series#pricing">Enroll</a></li>
+    <li><a href="https://thenelsoncode.com/#speaking">Speaking</a></li>
+    <li><a href="https://thenelsoncode.com/#books">Books</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="course-eyebrow">The Nelson Code — Digital Series</div>
+  <div class="course-num">Course 02 / The Nelson Code</div>
+  <div class="course-tag">Culture</div>
+  <h1><em>How To</em><br>Build Culture<br>That Lasts</h1>
+  <p class="hero-sub">Culture Is a Decision, Not an Accident</p>
+  <p class="hero-body">A school's culture should outlast any single person in it. This course shows you how to build something durable — where the motto is infrastructure, not decoration, and every small win becomes evidence of what is possible.</p>
+  <a href="https://payhip.com/b/XBgGu" class="btn-primary">Enroll in This Course — $47</a>
+  <a href="/how-to-series" class="btn-secondary">Browse the Full Series</a>
+</section>
+
+<div class="divider"></div>
+
+<section class="content">
+  <div class="section-label">What You'll Learn</div>
+  <h2>Culture is built decision by decision,<br><em>in the moments no one is watching.</em></h2>
+  <p class="body-text">Most campuses inherit their culture from whoever walked the hallways before them. This course is for leaders who refuse to settle for inherited dysfunction — who are willing to be intentional about what their school communicates, even when it's hard.</p>
+  <p class="body-text">Shane draws from his experience as a founding principal to show you how culture is built from the ground up — through the environment, the language, the small victories that become the engine of self-belief.</p>
+
+  <div class="pull-quote">"You cannot build a culture of dignity unless you model dignity first. Everything else is decoration."</div>
+
+  <div class="modules-grid">
+    <div class="module-card">
+      <div class="module-num">Module 01</div>
+      <div class="module-title">The Motto as Infrastructure, Not Decoration</div>
+      <p class="module-desc">How a motto becomes real — embedded in daily language, decisions, and the way people treat each other in the hallway.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 02</div>
+      <div class="module-title">Small Wins as the Engine of Self-Belief</div>
+      <p class="module-desc">Why small victories matter more than big speeches — and how to engineer the kind of wins that accumulate into identity.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 03</div>
+      <div class="module-title">Why Environment Is Instruction</div>
+      <p class="module-desc">What your hallways, classrooms, and common spaces are already teaching — and how to make them say something worth saying.</p>
+    </div>
+    <div class="module-card">
+      <div class="module-num">Module 04</div>
+      <div class="module-title">Designing Spaces That Speak Dignity</div>
+      <p class="module-desc">The physical and cultural design choices that communicate to students: you matter here, and this place was built for you.</p>
+    </div>
+  </div>
+
+  <div class="pricing-block">
+    <div class="pricing-info">
+      <div class="pricing-price">$47</div>
+      <div class="pricing-note">Instant access / lifetime</div>
+      <ul class="pricing-features">
+        <li>All video modules included</li>
+        <li>Downloadable tools &amp; frameworks</li>
+        <li>Reflection prompts per module</li>
+        <li>Certificate of completion</li>
+      </ul>
+    </div>
+    <div>
+      <a href="https://payhip.com/b/XBgGu" class="btn-primary">Enroll Now — $47</a>
+      <div style="margin-top:1rem;text-align:center"><a href="/how-to-series#pricing" style="font-family:'DM Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none">Or get all 6 courses for $197 →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="series-nav">
+  <div class="series-nav-inner">
+    <div class="section-label">The Full Series</div>
+    <div class="series-nav-grid">
+      <a href="/how-to-see-clearly" class="series-nav-card">
+        <span class="series-nav-num">Course 01 — Foundation</span>
+        <div class="series-nav-title">How To See Clearly</div>
+      </a>
+      <a href="/how-to-build-culture" class="series-nav-card active">
+        <span class="series-nav-num">Course 02 — Culture</span>
+        <div class="series-nav-title">How To Build Culture That Lasts</div>
+      </a>
+      <a href="/how-to-hold-the-ring" class="series-nav-card">
+        <span class="series-nav-num">Course 03 — Classroom Authority</span>
+        <div class="series-nav-title">How To Hold the Ring</div>
+      </a>
+      <a href="/how-to-move-people" class="series-nav-card">
+        <span class="series-nav-num">Course 04 — Student Relationships</span>
+        <div class="series-nav-title">How To Move People</div>
+      </a>
+      <a href="/how-to-lead-when-the-system-fails" class="series-nav-card">
+        <span class="series-nav-num">Course 05 — Leadership</span>
+        <div class="series-nav-title">How To Lead When the System Fails</div>
+      </a>
+      <a href="/how-to-stand-firm" class="series-nav-card">
+        <span class="series-nav-num">Course 06 — Identity &amp; Calling</span>
+        <div class="series-nav-title">How To Stand Firm</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-brand">The Nelson Code / Shane Nelson — 2026</span>
+  <ul class="footer-links">
+    <li><a href="https://thenelsoncode.com">Home</a></li>
+    <li><a href="/how-to-series">The Series</a></li>
+    <li><a href="https://thenelsoncode.com/#speaking">Speaking</a></li>
+    <li><a href="mailto:shane@thenelsoncode.com">Contact</a></li>
+  </ul>
+</footer>
+</body>
+</html>
