@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pause. Pivot. Point. | NAEA 2026 Resources | Shane Nelson</title>
+<meta name="description" content="Resources for attendees of Shane Nelson's Pause. Pivot. Point. session at NAEA 2026.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f0d0b">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0f0d0b;
+  --card:#161310;
+  --surface:#1e1a15;
+  --gold:#c9a84c;
+  --gold-light:#e8c96b;
+  --gold-dim:#8a6e30;
+  --cream:#f0e8d8;
+  --cream-dim:#b8a98a;
+  --text:#ede8df;
+  --text-2:#a89d8b;
+  --line:rgba(201,168,76,.22);
+  --line-strong:rgba(201,168,76,.5);
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;
+  --wrap:980px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1.125rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+.wrap{width:min(var(--wrap),100% - 3rem);margin-inline:auto}
+:focus-visible{outline:2px solid var(--gold-light);outline-offset:3px;border-radius:2px}
+
+.btn{display:inline-block;font-family:var(--sans);font-size:1rem;font-weight:600;line-height:1.2;text-decoration:none;padding:.95rem 1.6rem;border:1px solid var(--gold);border-radius:2px;transition:background .2s,color .2s,border-color .2s;text-align:center}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--gold-light);border-color:var(--gold-light)}
+.btn-line{color:var(--cream);border-color:var(--line-strong)}
+.btn-line:hover{border-color:var(--gold-light);color:var(--gold-light)}
+
+.top{border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:4.25rem}
+.brand{font-family:var(--serif);font-weight:700;font-size:1.25rem;text-decoration:none;color:var(--cream)}
+.back{font-size:.98rem;color:var(--cream-dim);text-decoration:none}
+.back:hover{color:var(--gold-light)}
+
+.hero{padding:clamp(3.5rem,8vw,6rem) 0 clamp(2.5rem,5vw,4rem)}
+.hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(2.5rem,6vw,4.8rem);line-height:1.05;letter-spacing:-.015em;color:var(--cream)}
+.hero .sub{margin-top:1.25rem;font-family:var(--serif);font-style:italic;font-size:clamp(1.15rem,2.2vw,1.5rem);color:var(--cream-dim);max-width:36rem;line-height:1.4}
+.hero .thanks{margin-top:2rem;max-width:34rem;color:var(--text)}
+
+.sec{padding:clamp(2.5rem,5vw,4rem) 0}
+.sec h2{font-family:var(--serif);font-weight:700;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;color:var(--cream)}
+
+/* Downloads */
+.files{margin-top:1.75rem;border-top:1px solid var(--line-strong)}
+.file{display:grid;grid-template-columns:1fr auto;gap:1rem 2rem;align-items:center;padding:1.5rem 0;border-bottom:1px solid var(--line)}
+.file h3{font-family:var(--serif);font-weight:700;font-size:1.4rem;color:var(--cream)}
+.file p{margin-top:.25rem;color:var(--text-2);font-size:1rem;max-width:34rem}
+@media (max-width:640px){.file{grid-template-columns:1fr}.file .btn{justify-self:start}}
+
+/* The move */
+.move{margin-top:1.75rem;border-top:1px solid var(--line-strong)}
+.move .step{display:grid;grid-template-columns:8rem 1fr;gap:1rem 2rem;align-items:baseline;padding:1.25rem 0;border-bottom:1px solid var(--line)}
+.move dt{font-family:var(--serif);font-weight:900;font-size:1.7rem;color:var(--gold-light)}
+.move dd{margin:0;color:var(--text)}
+@media (max-width:640px){.move .step{grid-template-columns:1fr;gap:.2rem}}
+.quote{margin-top:2rem;font-family:var(--serif);font-style:italic;font-size:clamp(1.25rem,2.4vw,1.65rem);line-height:1.4;color:var(--cream);border-left:3px solid var(--gold);padding-left:1.25rem;max-width:36rem}
+
+/* Monday */
+.monday{background:var(--surface);border-block:1px solid var(--line-strong);padding:clamp(2.5rem,5vw,4rem) 0}
+.monday p{font-family:var(--serif);font-weight:700;font-size:clamp(1.5rem,3.2vw,2.3rem);line-height:1.25;color:var(--cream);max-width:36rem}
+
+/* Motto strip */
+.motto{padding:clamp(3rem,6vw,5rem) 0}
+.motto ul{list-style:none;margin:0;padding:0;display:grid;gap:.4rem}
+.motto li{font-family:var(--serif);font-weight:900;font-size:clamp(1.8rem,4.6vw,3.4rem);line-height:1.1;color:var(--cream)}
+
+/* Contact */
+.contact p{margin-top:1rem;max-width:34rem;color:var(--text)}
+.contact p a{color:var(--gold-light);text-underline-offset:3px}
+.contact .signup{margin-top:1.75rem}
+.contact .also{margin-top:2rem;color:var(--text-2);font-size:1rem}
+
+
+/* Newsletter form */
+.signup{display:grid;gap:1rem;max-width:30rem}
+.signup label{display:block;font-size:.95rem;color:var(--cream-dim);margin-bottom:.3rem}
+.signup input[type=text],.signup input[type=email]{width:100%;font:inherit;font-size:1rem;color:var(--cream);background:var(--bg);border:1px solid var(--line-strong);border-radius:2px;padding:.85rem 1rem}
+.signup input::placeholder{color:#6f6656}
+.signup input:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px;border-color:var(--gold-light)}
+.signup .btn{justify-self:start;cursor:pointer}
+.signup .btn[disabled]{opacity:.6;cursor:default}
+.signup .msg{min-height:1.5em;color:var(--gold-light);font-size:1rem}
+.signup .hp{position:absolute;left:-9999px}
+
+footer{margin-top:2rem;padding:2.5rem 0 3rem;border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between}
+footer p{color:var(--text-2);font-size:.98rem}
+footer a{color:var(--cream-dim);text-underline-offset:3px}
+footer a:hover{color:var(--gold-light)}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">Shane Nelson</a>
+    <a class="back" href="/">Back to thenelsoncode.com</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1>Pause. Pivot. Point.</h1>
+      <p class="sub">A framework for reaching the students your school almost lost.</p>
+      <p class="thanks">Thank you for spending the hour. Everything from the session is below. Take what helps and pass it to someone in your building.</p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>Download</h2>
+      <div class="files">
+        <!-- Files live in /naea/files/. The filenames in href must match the files you upload exactly. -->
+        <div class="file">
+          <div>
+            <h3>The conference packet</h3>
+            <p>Six pages: the move, the ledger, the work, the diagnostic, and Monday. Print it or keep it on your phone.</p>
+          </div>
+          <a class="btn btn-gold" href="/naea/files/PausePivotPoint_Conference_Packet.pdf" download>Download the packet</a>
+        </div>
+        <div class="file">
+          <div>
+            <h3>The session slides</h3>
+            <p>The full presentation as a PDF.</p>
+          </div>
+          <a class="btn btn-gold" href="/naea/files/PausePivotPoint_NAEA2026_Slides.pdf" download>Download the slides</a>
+        </div>
+        <!-- To add another file, copy one of the .file blocks above and change the title, description, and filename. -->
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap">
+      <h2>The move, in three parts</h2>
+      <dl class="move">
+        <div class="step"><dt>Pause</dt><dd>The reaction you avoid. The space between what a student does and what you do next.</dd></div>
+        <div class="step"><dt>Pivot</dt><dd>The different move you make. Not toward the pressure. Toward the space that opened up.</dd></div>
+        <div class="step"><dt>Point</dt><dd>The lesson underneath. What the moment was actually about.</dd></div>
+      </dl>
+      <p class="quote">The point of the lesson is never the lesson. The point of the lesson is the child.</p>
+    </div>
+  </section>
+
+  <section class="monday">
+    <div class="wrap">
+      <p>Apply it once this week. Tell a colleague. Watch what changes.</p>
+    </div>
+  </section>
+
+  <section class="motto">
+    <div class="wrap">
+      <ul aria-label="The motto">
+        <li>I have value.</li>
+        <li>My life has a purpose.</li>
+        <li>I will succeed.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec contact">
+    <div class="wrap">
+      <h2>Stay in touch</h2>
+      <p>The stories from the session are headed for a book. Leave your email and Shane will send new stories, resources, and news when the book is ready.</p>
+      <form class="signup" id="signup" name="newsletter" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="newsletter">
+        <input type="hidden" name="source" value="naea-2026">
+        <p class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+        <div><label for="su-name">First name</label><input id="su-name" type="text" name="first_name" autocomplete="given-name"></div>
+        <div><label for="su-email">Email address</label><input id="su-email" type="email" name="email" autocomplete="email" required></div>
+        <button class="btn btn-gold" type="submit">Sign me up</button>
+        <p class="msg" role="status" aria-live="polite"></p>
+      </form>
+      <p class="also">Want Shane in front of your staff, your district, or your parents? <a href="/#book">Bring Shane to your event</a> or email <a href="mailto:shane@thenelsoncode.com">shane@thenelsoncode.com</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; Shane Nelson. The Nelson Code. <a href="mailto:shane@thenelsoncode.com">shane@thenelsoncode.com</a></p>
+    <p>The belief behind the work lives at <a href="https://itsanelson.com">itsanelson.com</a>.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Newsletter signup: posts to Netlify Forms and confirms on the page.
+  var form=document.getElementById('signup');
+  if(form && window.fetch && window.URLSearchParams && window.FormData){
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var msg=form.querySelector('.msg'), btn=form.querySelector('button');
+      btn.disabled=true; msg.textContent='Sending...';
+      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
+        .then(function(r){
+          if(!r.ok){throw new Error('bad');}
+          form.reset(); btn.disabled=false;
+          msg.textContent='You are on the list. Thank you.';
+        })
+        .catch(function(){
+          btn.disabled=false;
+          msg.textContent='That did not go through. Please email shane@thenelsoncode.com and Shane will add you.';
+        });
+    });
+  }
+})();
+</script>
+</body>
+</html>
