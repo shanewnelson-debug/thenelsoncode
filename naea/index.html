@@ -433,23 +433,38 @@ footer a:hover{color:var(--gold-light)}
 
 <script>
 (function(){
-  // Newsletter signup: posts to Netlify Forms and confirms on the page.
+  // Newsletter signup: saves to Netlify Forms (the record) and subscribes the
+  // person to The Nelson Code list in Klaviyo (which sends the welcome email).
   var form=document.getElementById('signup');
   if(form && window.fetch && window.URLSearchParams && window.FormData){
     form.addEventListener('submit',function(ev){
       ev.preventDefault();
       var msg=form.querySelector('.msg'), btn=form.querySelector('button');
       btn.disabled=true; msg.textContent='Sending...';
-      fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(form)).toString()})
-        .then(function(r){
-          if(!r.ok){throw new Error('bad');}
-          form.reset(); btn.disabled=false;
-          msg.textContent='You are on the list. Thank you.';
-        })
-        .catch(function(){
-          btn.disabled=false;
+      var fd=new FormData(form);
+      var email=(fd.get('email')||'').trim(), first=(fd.get('first_name')||'').trim(), src=fd.get('source')||'';
+      var toNetlify=fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(fd).toString()})
+        .then(function(r){return r.ok;},function(){return false;});
+      var toKlaviyo=Promise.resolve(false);
+      if(!fd.get('bot-field')){
+        var attrs={email:email,properties:{nelsoncode_source:src}};
+        if(first){attrs.first_name=first;}
+        toKlaviyo=fetch('https://a.klaviyo.com/client/subscriptions?company_id=QUnLHh',{method:'POST',
+          headers:{'Content-Type':'application/vnd.api+json','revision':'2025-01-15'},
+          body:JSON.stringify({data:{type:'subscription',attributes:{custom_source:'thenelsoncode.com '+src,
+            profile:{data:{type:'profile',attributes:attrs}}},
+            relationships:{list:{data:{type:'list',id:'XcAa9Z'}}}}})})
+          .then(function(r){return r.ok;},function(){return false;});
+      }
+      Promise.all([toNetlify,toKlaviyo]).then(function(res){
+        btn.disabled=false;
+        if(res[0]||res[1]){
+          form.reset();
+          msg.textContent='You are on the list. Check your inbox for a welcome note from Shane.';
+        }else{
           msg.textContent='That did not go through. Please email shane@thenelsoncode.com and Shane will add you.';
-        });
+        }
+      });
     });
   }
 })();
